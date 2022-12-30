@@ -27,11 +27,11 @@ async def message(message: types.Message):
             f'https://api.openweathermap.org/data/2.5/weather?q={message.text}&appid={openweather_token}&units=metric'
         )
         data = r.json()
-
-        city = data['name']
-        current_weather = data['main']['temp']
-        wind = data['wind']['speed']
-        weather_description = data['weather'][0]['main']
+        if 'data' in locals():
+            city = data['name']
+            current_weather = data['main']['temp']
+            wind = data['wind']['speed']
+            weather_description = data['weather'][0]['main']
         if weather_description in emoji_code:
             print_emoji = emoji_code[weather_description]
         else:
